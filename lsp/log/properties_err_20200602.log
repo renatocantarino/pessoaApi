@@ -1,0 +1,32 @@
+jun 02, 2020 4:30:30 PM com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFORMA합ES: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\Renato Cantarino\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\193.6911.18\jbr
+jun 02, 2020 4:31:07 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+GRAVE: Internal error: java.lang.NullPointerException
+java.util.concurrent.CompletionException: java.lang.NullPointerException
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1081)
+jun 02, 2020 4:31:07 PM com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFORMA합ES: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\Renato Cantarino\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\193.6911.18\jbr
+jun 02, 2020 4:31:13 PM com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFORMA합ES: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\Renato Cantarino\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\193.6911.18\jbr
+jun 02, 2020 4:32:26 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+GRAVE: Internal error: java.lang.NullPointerException
+java.util.concurrent.CompletionException: java.lang.NullPointerException
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1081)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:479)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+Caused by: java.lang.NullPointerException
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1072)
+	... 6 more
+
+jun 02, 2020 4:32:32 PM com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFORMA합ES: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\Renato Cantarino\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\193.6911.18\jbr
+jun 02, 2020 5:40:15 PM com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFORMA합ES: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\Renato Cantarino\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\193.6911.18\jbr
