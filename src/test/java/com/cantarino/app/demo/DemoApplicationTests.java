@@ -18,6 +18,9 @@ import static org.junit.Assert.*;
 @SpringBootTest
 class DemoApplicationTests {
 
+    final String pessoaNaoEncontrada = "Pessoa não encontrada";
+    final String pessoaJaCadastrada = "Pessoa já cadastrada";
+
     @Autowired
     private PessoaService repository;
 
@@ -25,15 +28,43 @@ class DemoApplicationTests {
     public void DEVE_SALVAR_E_RECUPERAR() {
 
         Pessoa pessoa = new Pessoa();
-        pessoa.setCpf("01185983171");
+        pessoa.setCpf("01913751015");
         pessoa.setNome("teste cantarino");
         pessoa.setData_nascimento(LocalDate.now());
 
-        Pessoa retorno = repository.CriarOrUpdate(pessoa);
+        Pessoa retorno = repository.Criar(pessoa);
 
         assertEquals(pessoa.getNome(), retorno.getNome());
 
     }
+
+    @Test
+    public void NAO_DEVE_SALVAR_COM_CPF_DUPLICADO() {
+
+        try {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCpf("01913751015");
+        pessoa.setNome("teste cantarino");
+        pessoa.setData_nascimento(LocalDate.now());
+
+        Pessoa retorno = repository.Criar(pessoa);
+
+
+        Pessoa P2 = new Pessoa();
+        P2.setCpf("01913751015");
+        P2.setNome("teste cantarino");
+        P2.setData_nascimento(LocalDate.now());
+
+        Pessoa pessoa2 = repository.Criar(P2);
+        }
+        catch (RuntimeException ex)
+        {
+            assertEquals(pessoaJaCadastrada , ex.getMessage());
+        }
+
+    }
+
+
 
     @Test
     public void DEVE_SALVAR_E_DELETAR() {
@@ -44,16 +75,15 @@ class DemoApplicationTests {
             pessoa.setNome("teste cantarino");
             pessoa.setData_nascimento(LocalDate.now());
 
-            Pessoa retorno = repository.CriarOrUpdate(pessoa);
+            Pessoa retorno = repository.Criar(pessoa);
 
             repository.Delete(retorno);
             assertEquals(repository.findById(retorno.getId()), 0);
         }
         catch (RuntimeException ex)
         {
-            assertEquals("Pessoa nao encontrada" , ex.getMessage());
+            assertEquals(pessoaNaoEncontrada , ex.getMessage());
         }
-
     }
 
 
@@ -61,17 +91,17 @@ class DemoApplicationTests {
     public void DEVE_RECUPERAR_EDITAR() {
 
         Pessoa pessoa = new Pessoa();
-        pessoa.setCpf("01185983171");
+        pessoa.setCpf("37170408040");
         pessoa.setNome("teste cantarino");
         pessoa.setData_nascimento(LocalDate.now());
 
-        Pessoa retorno = repository.CriarOrUpdate(pessoa);
+        Pessoa retorno = repository.Criar(pessoa);
 
         Pessoa edit = new Pessoa();
         edit.setId(retorno.getId());
         edit.setNome("nome editado");
         edit.setData_nascimento(retorno.getData_nascimento());
-        Pessoa retorno2 = repository.CriarOrUpdate(pessoa);
+        Pessoa retorno2 = repository.Update(pessoa);
 
         assertEquals(retorno.getId(), retorno2.getId());
 
@@ -86,7 +116,7 @@ class DemoApplicationTests {
             pessoa.setNome("teste cantarino");
             pessoa.setData_nascimento(LocalDate.now());
 
-            Pessoa retorno = repository.CriarOrUpdate(pessoa);
+            Pessoa retorno = repository.Criar(pessoa);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

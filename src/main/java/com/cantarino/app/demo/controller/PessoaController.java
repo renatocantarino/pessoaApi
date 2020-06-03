@@ -3,6 +3,8 @@ package com.cantarino.app.demo.controller;
 import com.cantarino.app.demo.entities.Pessoa;
 import com.cantarino.app.demo.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,29 +23,46 @@ public class PessoaController {
     }
 
     @PostMapping("/api/pessoa")
-    public Pessoa Criar(@Valid @RequestBody Pessoa pessoa) {
+    public ResponseEntity Criar(@Valid @RequestBody Pessoa pessoa) {
         try
         {
-            return _pessoaService.CriarOrUpdate(pessoa);
+            return  ResponseEntity.ok().body(_pessoaService.Criar(pessoa));
         }
-        catch (Exception ex)
+        catch (RuntimeException ex)
         {
-            ex.getMessage();
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                                  .body(ex.getMessage());
         }
-        return null;
+
     }
 
     @PostMapping("/api/pessoa/{id}")
-    public Pessoa Update(@Valid @RequestBody Pessoa pessoa , @PathVariable("id") long id) {
+    public ResponseEntity Update(@Valid @RequestBody Pessoa pessoa , @PathVariable("id") long id) {
 
-        Pessoa retorno = _pessoaService.findById(id);
-        pessoa.setId(retorno.getId());
-
-        return _pessoaService.CriarOrUpdate(pessoa);
+        try
+        {
+            pessoa.setId(id);
+            return  ResponseEntity.ok().body(_pessoaService.Update(pessoa));
+        }
+        catch (RuntimeException ex)
+        {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ex.getMessage());
+        }
     }
 
     @DeleteMapping("/api/pessoa/{id}")
-    public void Delete(@PathVariable("id") long id) {
-         _pessoaService.Delete(_pessoaService.findById(id));
+    public ResponseEntity Delete(@PathVariable("id") long id) {
+
+        try
+        {
+            _pessoaService.Delete(_pessoaService.findById(id));
+            return  ResponseEntity.ok().body("Pessoa removida");
+        }
+        catch (RuntimeException ex)
+        {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ex.getMessage());
+        }
     }
 }

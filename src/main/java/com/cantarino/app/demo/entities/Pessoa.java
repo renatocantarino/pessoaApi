@@ -1,9 +1,11 @@
 package com.cantarino.app.demo.entities;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -14,18 +16,17 @@ public class Pessoa {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     @Column(name="nome")
     private String nome;
 
     @Column(name="cpf")
-    @CPF(message = "formato invalido")
+    @CPF(message = "formato inválido")
     private String cpf;
+
 
     @Column(name="data_nascimento")
     private LocalDate data_nascimento;
-
-
-
 
     public Long getId() {
         return id;
